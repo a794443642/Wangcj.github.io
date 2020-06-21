@@ -17,7 +17,7 @@
 <!--<![endif]-->
 
 <head>
-  <title>leetcode-数组-01 | Coding</title>
+  <title>数据结构之数组 | Coding</title>
   <!-- Meta data -->
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -164,81 +164,80 @@
         <div class="row col-md-offset-2">
             <div class="col-md-8">
     			<span class="post-meta">
-      <time datetime="2020-06-21T07:49:55.000Z" itemprop="datePublished">
+      <time datetime="2020-06-21T12:04:21.000Z" itemprop="datePublished">
           2020-06-21
       </time>
     
     
     | 
-    <a href='/tags/Leetcode，Arrays，Algorithm/'>Leetcode，Arrays，Algorithm</a>
+    <a href='/tags/Data-structures-Algorith/'>Data structures,Algorith</a>
     
     
 </span>
-                <h1>leetcode-数组-01</h1>
+                <h1>数据结构之数组</h1>
             </div>
         </div>
         <div class="col-md-8 col-md-offset-2">
-      		<p>好久没有刷算法了，现在发现即使是一些很简单的题也做的磕磕绊绊，所以准备刷一刷leetcode顺便用博客记录一下</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h4 id="0～n-1中缺失的数字"><a href="#0～n-1中缺失的数字" class="headerlink" title="0～n-1中缺失的数字"></a><a href="https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/" target="_blank" rel="noopener">0～n-1中缺失的数字</a></h4><blockquote>
-<p>解题思路</p>
+      		<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><blockquote>
+<p>数组（Array）是一种线性表数据结构。它用一组连续的内存空间，来存储一组具有相同类型的数据</p>
 </blockquote>
-<p>首先看到这道题有序，寻找缺失数组想到二分法</p>
-<p>用start,mid，end来记录查找位置</p>
-<p>如果nums[mid]==mid那么说明缺失数字在mid位置之后</p>
-<p>否则在mid之前 </p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">missingNumber</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> start=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> end=nums.length-<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mid=(start+end)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">while</span>(start&lt;=end)&#123;</span><br><span class="line">            mid=(start+end)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(nums[mid]==mid)&#123;</span><br><span class="line">                start=mid+<span class="number">1</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                end=mid-<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> start;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>1.线性表 线性表就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向。</p>
+<p>常见的线性表结构：数组，链表、队列、栈等</p>
+<p><img src="file:///C:%5CUsers%5Cwcj%5CAppData%5CRoaming%5CTencent%5CUsers%5C794443642%5CTIM%5CWinTemp%5CRichOle%5CE%5DPO@W%1LE@%5BBB~NITGD__C.png" alt="img"></p>
+<p><img src="C:%5CUsers%5Cwcj%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200621201445703.png" alt="image-20200621201445703"></p>
+<p><img src="C:%5CUsers%5Cwcj%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200621201457608.png" alt="image-20200621201457608"></p>
+<p><img src="C:%5CUsers%5Cwcj%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200621201504889.png" alt="image-20200621201504889"></p>
+<p>2.连续的内存空间和相同类型的数据</p>
+<p>优点：两限制使得具有随机访问的特性 </p>
+<p>缺点：删除，插入数据效率低</p>
+<h4 id="数组怎么根据下标随机访问的？"><a href="#数组怎么根据下标随机访问的？" class="headerlink" title="数组怎么根据下标随机访问的？"></a>数组怎么根据下标随机访问的？</h4><p>一维数组</p>
+<p>通过寻址公式，计算出该元素存储的内存地址： </p>
+<p>a[i]_address = base_address + i * data_type_size</p>
+<p>二维数组</p>
+<p>对于 m * n 的数组，a [ i ][ j ] (i &lt; m,j &lt; n)的地址为：</p>
+<p>address = base_address + ( i * n + j) * type_size</p>
+<h4 id="为何数组插入和删除低效"><a href="#为何数组插入和删除低效" class="headerlink" title="为何数组插入和删除低效"></a>为何数组插入和删除低效</h4><p>若有一元素想往int[n]的第k个位置插入数据，需要在k-n的位置往后移。 </p>
+<p>最好情况时间复杂度 O(1) </p>
+<p>最坏情况复杂度为O(n) </p>
+<p>平均负责度为O(n)</p>
+<p>如果数组中的数据不是有序的，也就是无规律的情况下，可以直接把第k个位置上的数据移到最后，然后将插入的数据直接放在第k个位置上。这样时间复杂度就将为 O（1）了。这中思想在快排中有用到</p>
+<p><img src="C:%5CUsers%5Cwcj%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200621202514937.png" alt="image-20200621202514937"></p>
+<p>删除： </p>
+<p>与插入类似，为了保持内存的连续性。</p>
+<p>最好情况时间复杂度 O(1) </p>
+<p>最坏情况复杂度为O(n) </p>
+<p>平均复杂度为O(n)</p>
+<p>提高效率：将多次删除操作中集中在一起执行，可以先记录已经删除的数据，但是不进行数据迁移，而仅仅是记录，当发现没有更多空间存储时，再执行真 正的删除操作。这也是 JVM 标记清除垃圾回收算法的核心思想</p>
+<p>如下图删除abc不是真正的删除，而是先进行标记，为了避免d，e，f，g，h这几个数据会被搬移三次，我们可以先记录下已经删除的数据。每次的删除操作并不是真正地搬移数据，只是记录数据已经被删除。当数 组没有更多空间存储数据时，我们再触发执行一次真正的删除操作，这样就大大减少了删除操作导致的数据搬迁</p>
+<p><img src="C:%5CUsers%5Cwcj%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200621203702985.png" alt="image-20200621203702985"></p>
+<p>JVM标记清除算法：<br>大多数主流虚拟机采用可达性分析算法来判断对象是否存活，在标记阶段，会遍历所有 GC ROOTS，将所有 GC ROOTS 可达的对象标记为存活。只有当标 记工作完成后，清理工作才会开始。清除之后会产生大量不连续的内存碎片。算法在标记完成之后让所有存活的对象都向一端移动，然后直接清理掉边界以外的内存。<br>不足：</p>
+<p>1.效率问题。标记和清理效率都不高，但是当知道只有少量垃圾产生时会很高效。</p>
+<p>2.空间问题。会产生不连续的内存空间碎片，很有可能导致下一次分配一块连续较大的内存空间，由 于找不到合适的，又触发一次垃圾回收操作，一般试用于老年代的回收</p>
+<p>数组访问越界问题 </p>
+<p>C语言中的数据越界是一种未决行为，一般比较难发现的逻辑错误。相比之下，Java会有越界检查。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>* argv[])</span></span>&#123;    </span><br><span class="line">    <span class="keyword">int</span> i = <span class="number">0</span>;    </span><br><span class="line">    <span class="keyword">int</span> arr[<span class="number">3</span>] = &#123;<span class="number">0</span>&#125;;    </span><br><span class="line">    <span class="keyword">for</span>(; i&lt;=<span class="number">3</span>; i++)&#123;        </span><br><span class="line">        arr[i] = <span class="number">0</span>;        </span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"hello world\n"</span>);    </span><br><span class="line">    &#125;    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-
-
-<h4 id="最长连续递增序列"><a href="#最长连续递增序列" class="headerlink" title="最长连续递增序列"></a><a href="https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/" target="_blank" rel="noopener">最长连续递增序列</a></h4><blockquote>
-<p>解题思路</p>
-</blockquote>
-<p>1滑动窗口</p>
-<p>使用flag记录窗口起始位置 ，cmax记录最大长度</p>
-<p>当nums[i-1]&gt;=nums[i]时 起始位置改变 flag=i</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLengthOfLCIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> flag=<span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> cmax=<span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">           <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;nums[i-<span class="number">1</span>]&gt;=nums[i])&#123;</span><br><span class="line">               flag=i;</span><br><span class="line">           &#125;</span><br><span class="line">           cmax=Math.max(cmax, i - flag + <span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> cmax;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>2动态规划</p>
-<blockquote>
-<p>解题思路</p>
-</blockquote>
-<p>dp[i]表示位置i的连续递增子序列长度，初始化为1，因为每个数字是最小的递增子序列<br>状态转移方程：若nums[i-1]&lt;nums[i]，则dp[i]=dp[i-1]+1；否则dp[i]=1</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLengthOfLCIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp=<span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        Arrays.fill(dp,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> max=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;nums[i]&gt;nums[i-<span class="number">1</span>])&#123;</span><br><span class="line">                dp[i]=dp[i-<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            max=dp[i]&gt;max?dp[i]:max;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
-
-
-
-<h4 id="删除排序数组中的重复项"><a href="#删除排序数组中的重复项" class="headerlink" title="删除排序数组中的重复项"></a><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="noopener">删除排序数组中的重复项</a></h4><blockquote>
-<p>解题思路</p>
-</blockquote>
-<p>使用双指针一个指向不重复数字的插入位置，一个指向比较数字的位置</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(count==<span class="number">0</span>||nums[i]!=nums[count-<span class="number">1</span>])&#123;</span><br><span class="line">                nums[count++]=nums[i];     </span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">    &#125;<span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<p>这段代码的运行结果并非是打印三行“hello word”，而是会无限打印“hello world”</p>
+<p>在C语言中，只要不是访问受限的内存，所有的内存空间都是可以自由访问的。根据我们前面讲的数组寻址公式，a[3]也会被定位到某块不属于数组的 内存地址上，而这个地址正好是存储变量i的内存地址，那么a[3]=0就相当于i=0，所以就会导致代码无限循环。</p>
+<p>上述例子无限循环原因</p>
+<p>1.不同的语言对数组访问越界的处理方式不同，即便是同一种语言，不同的编译器处理的方式也不同</p>
+<p>2.栈是由高到低位增长的，所以，i和数组的数据从高位地址到低位地址依次是：i, a[2], a[1], a[0]。a[3]通过寻址公式，计算得到地址正好 是i的存储地址，所以a[3]=0，就相当于i=0. </p>
+<h4 id="用数组or容器？"><a href="#用数组or容器？" class="headerlink" title="用数组or容器？"></a>用数组or容器？</h4><p>数组先指定了空间大小 超过需要重新分配空间，使用ArrayList，我们就完全不需要关心底层的扩容逻辑，ArrayList已经帮我们实现好了。每次存储空间不够的时候，它都会将空间自动扩容为1.5倍大小。 因为扩容操作涉及内存申请和数据搬移，是比较耗时的。所以，如果事先能确定需要存储的数据大小，最好在创建ArrayList的时候事 先指定数据大小。 </p>
+<p>ArrayList最大的优势就是可以将很多数组操作的细节封装起来。比如前面提到的数组插入、删除数据时需要搬移其他数据等 </p>
+<p>1.希望存储基本类型数据，可以用数组 ，.Java ArrayList无法存储基本类型，比如int、long，需要封装为Integer、Long类，而Autoboxing、Unboxing则有一定的性能消耗，</p>
+<p>2.事先知道数据大小，并且操作简单，可以用数组 </p>
+<p>3.直观表示多维，可以用数组，比如Object[][] array；而用容器的话则需要这样定义：ArrayList<ArrayList > array</p>
+<p> 4.业务开发，使用容器足够，开发框架，追求性能，首先数组。</p>
 
             <div class="clearfix"></div>
             <hr class="nogutter">
         </div>
         <nav class="m-pagination col-md-8 col-md-offset-2 col-sm-24" role="pagination">
     
-    <a class="pull-left" href="/2020/06/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E6%95%B0%E7%BB%84/" style="float: left;">
-        ← 数据结构之数组
-    </a>
     
+    <a class="pull-right" href="/2020/06/21/leetcode-%E6%95%B0%E7%BB%84/">
+        leetcode-数组-01 →
+    </a>
     
 </nav>
 
