@@ -179,7 +179,9 @@
         </div>
         <div class="col-md-8 col-md-offset-2">
       		<p>好久没有刷算法了，现在发现即使是一些很简单的题也做的磕磕绊绊，所以准备刷一刷leetcode顺便用博客记录一下</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h4 id="0～n-1中缺失的数字"><a href="#0～n-1中缺失的数字" class="headerlink" title="0～n-1中缺失的数字"></a><a href="https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/" target="_blank" rel="noopener">0～n-1中缺失的数字</a></h4><p>解题思路</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h4 id="0～n-1中缺失的数字"><a href="#0～n-1中缺失的数字" class="headerlink" title="0～n-1中缺失的数字"></a><a href="https://leetcode-cn.com/problems/que-shi-de-shu-zi-lcof/" target="_blank" rel="noopener">0～n-1中缺失的数字</a></h4><blockquote>
+<p>解题思路</p>
+</blockquote>
 <p>首先看到这道题有序，寻找缺失数组想到二分法</p>
 <p>用start,mid，end来记录查找位置</p>
 <p>如果nums[mid]==mid那么说明缺失数字在mid位置之后</p>
@@ -188,20 +190,26 @@
 
 
 
-<h4 id="最长连续递增序列"><a href="#最长连续递增序列" class="headerlink" title="最长连续递增序列"></a><a href="https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/" target="_blank" rel="noopener">最长连续递增序列</a></h4><p>解题思路</p>
+<h4 id="最长连续递增序列"><a href="#最长连续递增序列" class="headerlink" title="最长连续递增序列"></a><a href="https://leetcode-cn.com/problems/longest-continuous-increasing-subsequence/" target="_blank" rel="noopener">最长连续递增序列</a></h4><blockquote>
+<p>解题思路</p>
+</blockquote>
 <p>1滑动窗口</p>
 <p>使用flag记录窗口起始位置 ，cmax记录最大长度</p>
 <p>当nums[i-1]&gt;=nums[i]时 起始位置改变 flag=i</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLengthOfLCIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> flag=<span class="number">0</span>;</span><br><span class="line">       <span class="keyword">int</span> cmax=<span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">           <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;nums[i-<span class="number">1</span>]&gt;=nums[i])&#123;</span><br><span class="line">               flag=i;</span><br><span class="line">           &#125;</span><br><span class="line">           cmax=Math.max(cmax, i - flag + <span class="number">1</span>);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> cmax;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>2动态规划</p>
+<blockquote>
 <p>解题思路</p>
+</blockquote>
 <p>dp[i]表示位置i的连续递增子序列长度，初始化为1，因为每个数字是最小的递增子序列<br>状态转移方程：若nums[i-1]&lt;nums[i]，则dp[i]=dp[i-1]+1；否则dp[i]=1</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findLengthOfLCIS</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp=<span class="keyword">new</span> <span class="keyword">int</span>[nums.length];</span><br><span class="line">        Arrays.fill(dp,<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">int</span> max=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i&gt;<span class="number">0</span>&amp;&amp;nums[i]&gt;nums[i-<span class="number">1</span>])&#123;</span><br><span class="line">                dp[i]=dp[i-<span class="number">1</span>]+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            max=dp[i]&gt;max?dp[i]:max;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h4 id="删除排序数组中的重复项"><a href="#删除排序数组中的重复项" class="headerlink" title="删除排序数组中的重复项"></a><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="noopener">删除排序数组中的重复项</a></h4><p>解题思路</p>
+<h4 id="删除排序数组中的重复项"><a href="#删除排序数组中的重复项" class="headerlink" title="删除排序数组中的重复项"></a><a href="https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/" target="_blank" rel="noopener">删除排序数组中的重复项</a></h4><blockquote>
+<p>解题思路</p>
+</blockquote>
 <p>使用双指针一个指向不重复数字的插入位置，一个指向比较数字的位置</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">removeDuplicates</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> count=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(count==<span class="number">0</span>||nums[i]!=nums[count-<span class="number">1</span>])&#123;</span><br><span class="line">                nums[count++]=nums[i];     </span><br><span class="line">        &#125;</span><br><span class="line">         </span><br><span class="line">    &#125;<span class="keyword">return</span> count;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
