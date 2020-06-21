@@ -183,10 +183,10 @@
 </blockquote>
 <p>1.线性表 线性表就是数据排成像一条线一样的结构。每个线性表上的数据最多只有前和后两个方向。</p>
 <p>常见的线性表结构：数组，链表、队列、栈等</p>
-<p><img src="file:///C:%5CUsers%5Cwcj%5CAppData%5CRoaming%5CTencent%5CUsers%5C794443642%5CTIM%5CWinTemp%5CRichOle%5CE%5DPO@W%1LE@%5BBB~NITGD__C.png" alt="img"></p>
-<p><img src="C:%5CUsers%5Cwcj%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200621201445703.png" alt="image-20200621201445703"></p>
-<p><img src="C:%5CUsers%5Cwcj%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200621201457608.png" alt="image-20200621201457608"></p>
-<p><img src="C:%5CUsers%5Cwcj%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200621201504889.png" alt="image-20200621201504889"></p>
+<p><img src="/2020/06/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E6%95%B0%E7%BB%84/1.png" alt="img"></p>
+<p><img src="/2020/06/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E6%95%B0%E7%BB%84/2.png" alt="image-20200621201445703"></p>
+<p><img src="/2020/06/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E6%95%B0%E7%BB%84/3.png" alt="image-20200621201457608"></p>
+<p><img src="/2020/06/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E6%95%B0%E7%BB%84/4.png" alt="image-20200621201504889"></p>
 <p>2.连续的内存空间和相同类型的数据</p>
 <p>优点：两限制使得具有随机访问的特性 </p>
 <p>缺点：删除，插入数据效率低</p>
@@ -201,7 +201,7 @@
 <p>最坏情况复杂度为O(n) </p>
 <p>平均负责度为O(n)</p>
 <p>如果数组中的数据不是有序的，也就是无规律的情况下，可以直接把第k个位置上的数据移到最后，然后将插入的数据直接放在第k个位置上。这样时间复杂度就将为 O（1）了。这中思想在快排中有用到</p>
-<p><img src="C:%5CUsers%5Cwcj%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200621202514937.png" alt="image-20200621202514937"></p>
+<p><img src="/2020/06/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E6%95%B0%E7%BB%84/5.png" alt="image-20200621202514937"></p>
 <p>删除： </p>
 <p>与插入类似，为了保持内存的连续性。</p>
 <p>最好情况时间复杂度 O(1) </p>
@@ -209,7 +209,7 @@
 <p>平均复杂度为O(n)</p>
 <p>提高效率：将多次删除操作中集中在一起执行，可以先记录已经删除的数据，但是不进行数据迁移，而仅仅是记录，当发现没有更多空间存储时，再执行真 正的删除操作。这也是 JVM 标记清除垃圾回收算法的核心思想</p>
 <p>如下图删除abc不是真正的删除，而是先进行标记，为了避免d，e，f，g，h这几个数据会被搬移三次，我们可以先记录下已经删除的数据。每次的删除操作并不是真正地搬移数据，只是记录数据已经被删除。当数 组没有更多空间存储数据时，我们再触发执行一次真正的删除操作，这样就大大减少了删除操作导致的数据搬迁</p>
-<p><img src="C:%5CUsers%5Cwcj%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20200621203702985.png" alt="image-20200621203702985"></p>
+<p><img src="/2020/06/21/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B9%8B%E6%95%B0%E7%BB%84/6.png" alt="image-20200621203702985"></p>
 <p>JVM标记清除算法：<br>大多数主流虚拟机采用可达性分析算法来判断对象是否存活，在标记阶段，会遍历所有 GC ROOTS，将所有 GC ROOTS 可达的对象标记为存活。只有当标 记工作完成后，清理工作才会开始。清除之后会产生大量不连续的内存碎片。算法在标记完成之后让所有存活的对象都向一端移动，然后直接清理掉边界以外的内存。<br>不足：</p>
 <p>1.效率问题。标记和清理效率都不高，但是当知道只有少量垃圾产生时会很高效。</p>
 <p>2.空间问题。会产生不连续的内存空间碎片，很有可能导致下一次分配一块连续较大的内存空间，由 于找不到合适的，又触发一次垃圾回收操作，一般试用于老年代的回收</p>
@@ -226,7 +226,7 @@
 <p>ArrayList最大的优势就是可以将很多数组操作的细节封装起来。比如前面提到的数组插入、删除数据时需要搬移其他数据等 </p>
 <p>1.希望存储基本类型数据，可以用数组 ，.Java ArrayList无法存储基本类型，比如int、long，需要封装为Integer、Long类，而Autoboxing、Unboxing则有一定的性能消耗，</p>
 <p>2.事先知道数据大小，并且操作简单，可以用数组 </p>
-<p>3.直观表示多维，可以用数组，比如Object[][] array；而用容器的话则需要这样定义：ArrayList<ArrayList > array</p>
+<p>3.直观表示多维，可以用数组，比如Object[][] array；而用容器的话则需要这样定义：ArrayList<ArrayList> array</ArrayList></p>
 <p> 4.业务开发，使用容器足够，开发框架，追求性能，首先数组。</p>
 
             <div class="clearfix"></div>
